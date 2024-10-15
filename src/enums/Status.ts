@@ -3,5 +3,6 @@ export enum Status {
   EmAnalise = "Em análise",
   NaoConformidade = "Não conformidade",
   Recebida = "Recebida",
-  NaoEnviado = "Não enviada"
+  NaoEnviado = "Não enviada",
+  Indefinido = "---"
 }

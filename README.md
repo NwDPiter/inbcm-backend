@@ -81,6 +81,9 @@ ADMIN_SITE_URL="https://localhost:5173"
 
 ```
 # Executando a API:
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Nocs-INBCM&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fbrunopithon%2Ftesteinsomnia%2Frefs%2Fheads%2Fmain%2FNocs1.json)
+
+
    Dentro do diretório do projeto,siga os seguintes passos:
   - 1 Inicialize o docker.
   - 2 Execute script para criar usuários mockados(opcional).
@@ -94,15 +97,38 @@ ADMIN_SITE_URL="https://localhost:5173"
 
 ```
 
+
+## Executando scripts para popular o banco
+É **imprescindível** executar o script de profile anteriormente aos demais scripts para assegurar que os usuários criados sejam vinculados ao seu respectivo perfil.
+
+### Adicionando os perfis padrão do sistema:
+
+``` bash
+  pnpm run create:default-profiles
+```
+
 ### Criando mocks de usuários e museus:
+
 ``` bash
   pnpm run create:data
 ```
-### Criando mock para usuários admins:
+### Criando mock para usuário administrador:
 
 ``` bash
   pnpm run create:admin-user
 ```
+
+### Adicionando as permissões:
+
+``` bash
+  pnpm run create:permissions
+```
+
+### Rodando todos os scripts de uma só vez
+``` bash
+pnpm run create:default-profiles && pnpm run create:admin-user && pnpm run create:data && pnpm run create:permissions
+```
+
 ## Inicializando os serviços:
 ```bash
   pnpm run dev
@@ -121,6 +147,12 @@ ADMIN_SITE_URL="https://localhost:5173"
 
  ```bash
   pnpm jest
+ ```
+
+  Para rodar os testes unitários e testes de feature com mais detalhes:
+
+ ```bash
+  pnpm jest --verbose
  ```
 
  Para verificar a cobertura de testes:

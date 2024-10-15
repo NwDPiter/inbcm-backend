@@ -4,20 +4,19 @@ export interface IUsuario extends Document {
   nome: string
   email: string
   museus: string[]
-  senha: string
   admin: boolean
-  papel_usuario: string
+  senha: string
+  profile: Types.ObjectId
+  ativo: boolean
 }
+
 const UsuarioSchema = new Schema<IUsuario>({
   nome: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  senha: { type: String, required: true },
   admin: { type: Boolean, default: false },
-  papel_usuario: {
-    type: String,
-    enum: ["administrador", "analista"],
-    default: "analista"
-  }
+  senha: { type: String, required: true },
+  profile: { type: Schema.Types.ObjectId, required: true, ref: "profiles" },
+  ativo: { type: Boolean, default: true }
 })
 
 interface IRefreshToken extends Document {

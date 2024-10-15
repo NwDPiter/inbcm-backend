@@ -7,10 +7,13 @@
     "dev": "concurrently \"docker compose up\" \"nodemon src/server.ts\"",
     "build": "sucrase --transforms typescript,imports -d dist ./src",
     "start": "node dist/server.js",
-    "create:admin-user": "sucrase-node scripts/createAdminUser.ts",
+    "create:default-profiles": "sucrase-node src/scripts/createDefaultProfiles.ts",
+    "create:admin-user": "sucrase-node src/scripts/createAdminUser.ts",
     "create:data": "sucrase-node src/scripts/generateMockData.ts",
+    "create:permissions": "sucrase-node src/scripts/setPermissions.ts",
     "list:users": "sucrase-node src/scripts/listUsers.ts",
-    "prepare": "[[ $NODE_ENV == 'development' ]] && husky install || true"
+    "prepare": "[[ $NODE_ENV == 'development' ]] && husky install || true",
+    "lint:fix": "eslint --cache --fix src"
   },
   "keywords": [],
   "author": "",

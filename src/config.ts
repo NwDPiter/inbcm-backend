@@ -17,8 +17,7 @@ const parsed = {
   MINIO_PORT: process.env.MINIO_PORT ?? "9000",
   MINIO_USE_SSL: process.env.MINIO_USE_SSL ?? "false",
   MINIO_ACCESS_KEY: process.env.MINIO_ACCESS_KEY ?? "",
-  MINIO_SECRET_KEY: process.env.MINIO_SECRET_KEY ?? "",
-  MINIO_BUCKET_NAME: process.env.MINIO_BUCKET_NAME || 'inbcm'
+  MINIO_SECRET_KEY: process.env.MINIO_SECRET_KEY ?? ""
 }
 
 expand({ parsed, processEnv: parsedEnv })
@@ -31,10 +30,13 @@ const schema = z.object({
   JWT_SECRET: z.string().min(1),
   ADMIN_SITE_URL: z.string().min(1).url(),
   MINIO_ENDPOINT: z.string().min(1),
-  MINIO_PORT: z.string().min(1).transform((val) => parseInt(val, 10)),
+  MINIO_PORT: z
+    .string()
+    .min(1)
+    .transform((val) => parseInt(val, 10)),
   MINIO_USE_SSL: z.enum(["true", "false"]),
   MINIO_ACCESS_KEY: z.string().min(1),
-  MINIO_SECRET_KEY: z.string().min(1),
+  MINIO_SECRET_KEY: z.string().min(1)
 })
 
 const config = schema.parse(parsedEnv)

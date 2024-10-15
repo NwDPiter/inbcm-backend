@@ -52,6 +52,12 @@ export interface DeclaracaoModel extends Document {
   createdAt?: Date
   updatedAt?: Date
   ultimaDeclaracao: boolean
+  dataRecebimento?: Date
+  dataEnvioAnalise?: Date
+  responsavelEnvioAnalise?: mongoose.Types.ObjectId
+  analistasResponsaveis?: mongoose.Types.ObjectId[]
+  dataAnalise?: Date
+  dataFimAnalise?: Date
 }
 
 export type ArquivoTypes =
@@ -84,7 +90,13 @@ const DeclaracaoSchema = new Schema<DeclaracaoModel>(
     arquivistico: ArquivoSchema,
     bibliografico: ArquivoSchema,
     museologico: ArquivoSchema,
-    ultimaDeclaracao: { type: Boolean, default: true }
+    ultimaDeclaracao: { type: Boolean, default: true },
+    dataRecebimento: { type: Date },
+    dataEnvioAnalise: { type: Date },
+    analistasResponsaveis: [{ type: Schema.Types.ObjectId, ref: "usuarios" }],
+    responsavelEnvioAnalise: { type: Schema.Types.ObjectId, ref: "usuarios" },
+    dataAnalise: { type: Date },
+    dataFimAnalise: { type: Date }
   },
   { timestamps: true, versionKey: false }
 )
@@ -101,4 +113,3 @@ export const Declaracoes = mongoose.model<DeclaracaoModel>(
   "Declaracoes",
   DeclaracaoSchema
 )
-export default Declaracoes

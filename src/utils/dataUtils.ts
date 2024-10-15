@@ -1,7 +1,13 @@
-export function gerarDataFormatada(data: Date): string {
-  return data.toLocaleDateString("pt-BR")
-}
+export class DataUtils {
+  static getCurrentData() {
+    return new Date()
+  }
 
-export function gerarHoraFormatada(data: Date): string {
-  return data.toLocaleTimeString("pt-BR")
+  static gerarDataFormatada(data: Date = new Date()): string {
+    return data.toLocaleDateString("pt-BR")
+  }
+
+  static gerarHoraFormatada(data: Date = new Date()): string {
+    return data.toLocaleTimeString("pt-BR")
+  }
 }
